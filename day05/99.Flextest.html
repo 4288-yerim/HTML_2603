@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>테스트</title>
+    <style>
+        body{
+            background-color: #eee;
+        }
+        .wbox{
+            display: flex;
+            background-color: white;
+            width: 100%;
+            height: 70px;
+            box-shadow: 0px 2px 4px #ddd;
+            padding-left: 20px;
+            padding-right: 30px;
+            align-items: center;
+            justify-content: space-between;
+        }
+        .gbox2{
+            display: flex;
+            padding-right: 20px;
+        }
+        .gbox{
+            background-color: #dddd;
+            text-align: center;
+            font-size: 15px;
+            padding: 8px 10px;
+            border: 3px solid white;
+        }
+        .cardcontainer{
+            display: flex;
+            padding: 40px;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+        .card{
+            display: flex;
+            width: 250px;
+            background-color: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px #ccc;
+            flex-direction: column;
+            margin: 10px;
+        }
+        img {
+            width: 200px;
+            height: 200px;
+            border-radius: 30px;
+            border: 2px solid #ccc;
+            background-image: url("../media/RYAN_1.jpg");
+            background-size: contain;
+            margin: 20px;
+        }
+        .buy{
+            background: #007bff;
+            color: white;
+            border: none;
+            text-align: center;
+            padding: 8px;
+            margin-top: 50px;
+            border-radius: 5px;
+            font-size: 14px;
+            cursor: pointer;
+            width: 100%;
+        }
+        .fon{
+            color: gray;
+            font-size: 15px;
+        }
+    </style>
+</head>
+<body>
+    <div id="container">
+        <div class="wbox">
+            <h2>좋은쇼핑몰</h2>
+            <div class="gbox2">
+                <span class="gbox">찜목록</span>
+                <span class="gbox">장바구니</span>
+                <span class="gbox">로그아웃</span>
+            </div>
+        </div>
+        <div class="cardcontainer">
+            <div class="card">
+                <img src="../media/RYAN_1.jpg">
+                <h2>상품 A</h2>
+                <div class="fon">이 상품은 아주 훌륭합니다. 설명할 필요가 없어요</div>
+                <div class="buy">구매하기</div>
+            </div>
+            <div class="card">
+                <img src="../media/RYAN_1.jpg">
+                <h2>상품 B</h2>
+                <div class="fon">이 상품은 기가 막힙니다. 꼭 구매하세요. 가성비 좋고 어쩌구 저쩌구 그냥 좋습니다. ㅎㅎㅎ</div>
+                <div class="buy">구매하기</div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
