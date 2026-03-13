@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        #container {
+            width: 800px;
+            margin: 50px auto;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="container">
+        <div style="text-align: center;">
+            <label><input type="checkbox" name="subject" value="java" >자바</label>
+            <label><input type="checkbox" name="subject" value="oracle">오라클</label>
+            <label><input type="checkbox" name="subject" value="html">html</label>
+            <label><input type="checkbox" name="subject" value="jquery">jquery</label>
+            <button onclick="fnSubject()">클릭!</button>
+        </div>
+        <hr>
+        <div id="imageList">
+
+        </div>
+    </div>
+</body>
+
+</html>
+<script>
+    function fnSubject(){
+        let subject = document.querySelectorAll("input[name='subject']:checked");
+        let imgList = document.querySelector("#imageList");
+        imgList.innerHTML = "";
+        for(let i=0; i<subject.length; i++) {
+            console.log(subject[i].value);
+            let img = document.createElement("img"); // <img></img>
+            img.src = "../media/" + subject[i].value + ".jpg";
+            //<img src="../media//java.jpg">
+            img.style.margin = "10px";
+            imgList.appendChild(img);
+        }
+
+
+        // image.src = "../media/" + subject.value + ".jpg";
+    }
+
+</script>

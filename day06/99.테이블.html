@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        table, th, tr, td{
+            border: 1px solid black;
+            padding: 5px 10px;
+            text-align: center;
+            border-collapse: collapse;
+        }
+        .box{
+            width: 40px;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <label><input type="text" id="num1" class="box"> 행</label>
+    <label><input type="text" id="num2" class="box"> 열</label>
+    
+    <button onclick="fnCreateTable()">작성</button>
+    <div id="contents">
+
+    </div>
+</body>
+</html>
+<script>
+    let
+    function fnCreateTable(){
+        let num1 = document.querySelector("#num1").value;
+        let num2 = document.querySelector("#num2").value;
+        
+        let table = document.createElement("table"); //<table></table>
+        for(let j=1; j<=num1; j++){
+            let row = document.createElement("tr");
+            for(let i=1; i<=num2; i++){
+                let column = document.createElement("td"); //<td></td>
+                column.innerHTML = j+", "+i;
+                row.appendChild(column);
+            }
+            table.appendChild(row);
+        }
+        let contents = document.querySelector("#contents")
+        contents.appendChild(table);
+    }
+</script>

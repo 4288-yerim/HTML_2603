@@ -3,8 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="style.css" rel="stylesheet">
     <title>색</title>
     <style>
+        body{
+            background-color: #050505;
+        }
         #container{
             display: grid;
             grid-template-columns: 1fr 1fr 1fr;
@@ -18,46 +22,54 @@
             font-size: 15px;
         }
         .box:nth-child(1){
-            background-color: #07111a;
+            background-color: #050505;
             color: white;
         }
         .box:nth-child(2){
-            background-color: rgba(10, 22, 33, 0.75);
+            background-color: #0d0d0d;
             color: white;
         }
         .box:nth-child(3){
-            background-color: #1fd6ff;
+            background-color: rgba(255, 255, 255, 0.04);
+            color: white;
         }
         .box:nth-child(4){
-            background-color: #78a9ff;
+            background-color: rgba(255, 255, 255, 0.06);
+            color: white;
         }
         .box:nth-child(5){
-            background-color: #b388ff;
+            background-color: rgba(255, 255, 255, 0.08);
+            color: white;
         }
         .box:nth-child(6){
-            background-color: #d8f6ff;
+            background-color: #f4f4f4;
         }
         .box:nth-child(7){
-            background-color: #7ea8b7;
+            background-color: rgba(255, 255, 255, 0.7);
+        }
+        .box:nth-child(8){
+            background-color: rgba(255, 255, 255, 0.45);
+        }
+        .box:nth-child(9){
+            background-color: #ff5a1f;
+        }
+        .box:nth-child(10){
+            background-color: #ff7b2f;
         }
     </style>
 </head>
 <body>
     <div id="container">
         <div class="box">배경</div>
+        <div class="box">배경2</div>
         <div class="box">패널</div>
+        <div class="box">패널2</div>
         <div class="box">라인</div>
-        <div class="box">보조 라인</div>
-        <div class="box">포인트</div>
-        <div class="box">텍스트</div>
-        <div class="box">약한 텍스트</div>
+        <div class="box">화이트</div>
+        <div class="box">서브</div>
+        <div class="box">서브2</div>
+        <div class="box">오렌지</div>
+        <div class="box">오렌지2</div>
     </div>
-        <!-- 배경: #07111a
-        패널: rgba(10, 22, 33, 0.75)
-        라인: #1fd6ff
-        보조 라인: #78a9ff
-        포인트: #b388ff
-        텍스트: #d8f6ff
-        약한 텍스트: #7ea8b7 -->
 </body>
 </html>
