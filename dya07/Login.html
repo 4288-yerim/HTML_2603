@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>로그인</title>
+    <script src="https://code.jquery.com/jquery-3.7.1.js" integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4=" crossorigin="anonymous"></script>
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+    <style>
+        body{
+            background-color: #eee;
+        }
+        #container{
+            width: 100%;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        #box{
+            width: 350px;
+            background-color: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 1px 1px 12px rgb(194, 194, 194);
+        }
+        .welcome{
+            text-align: center;
+            margin-bottom: 10px;
+        }
+        .sev{
+            text-align: center;
+            color: #999;
+            margin-bottom: 40px;
+            font-size: 15px;
+        }
+        .id, .password{
+            font-size: 14px;
+            margin-top: 15px;
+        }
+
+        .text-box{
+            margin: 5px 0px;
+            width: 93%;
+            height: 25px;
+            border: 2px solid #eee;
+            border-radius: 10px;
+            padding: 10px;
+            outline: none;
+        }
+
+        .text-box:focus {
+            border-color: #4A90E2;
+        }
+        
+        .blue-box{
+            width: 100%;
+            padding: 15px;
+            background-color: #4A90E2;
+            color: white;
+            font-size: 16px;
+            font-weight: bold;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            margin: 15px 0px;
+        }
+        
+        .bottom-text{
+            margin-bottom: 20px;
+            text-align: center;
+            color: #999;
+            font-size: 12px;
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+        }
+        a {
+            color: #999;
+            text-decoration: none;
+        }
+        .blue-box:hover{
+            background-color: #337ed4;
+            color: white;
+        }
+    </style>
+</head>
+<body>
+    <div id="app">
+        <div id="container">
+            <div id="box">
+                <h2 class="welcome">환영합니다</h2>
+                <div class="sev">서비스 이용을 위해 로그인해주세요.</div>
+
+                <div class="id">아이디</div>
+                <div><input type="text" v-model="userId" placeholder="아이디를 입력해주세요." class="text-box"> </div>
+
+                <div class="password">비밀번호</div>
+                <div><input type="password" v-model="pwd" placeholder="비밀번호를 입력하세요" class="text-box"></div>
+
+                <button class="blue-box" @click="fnLogin">로그인</button>
+                
+                <div class="bottom-text">
+                    <a href="#">비밀번호 찾기</a>
+                    <a>|</a>
+                    <a href="Join.html">회원가입</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
+<script>
+    const app = Vue.createApp({
+        data() {
+            return {
+                // 변수 - (key : value)
+                userId : "",
+                pwd : ""
+            };
+        },
+        methods: {
+            // 함수(메소드) - (key : function())
+            fnLogin : function () {
+                let self = this;
+                let param = {
+                    userId : self.userId,
+                    pwd : self.pwd
+                }
+                $.ajax({
+                    url: "http://192.168.30.57:3009/login",
+                    dataType: "json",
+                    type: "GET",
+                    data : param,
+                    // data: {userId : self.userId, pwd : self.pwd},
+                    success: function (data) {
+                        console.log(data);
+                        alert(data.message);
+                        if(data.success){
+                            location.href="Main.html";
+                        }
+                    }
+                });
+            }
+        }, // methods
+        mounted() {
+            // 처음 시작할 때 실행되는 부분
+        }
+    });
+
+    app.mount('#app');
+</script>
