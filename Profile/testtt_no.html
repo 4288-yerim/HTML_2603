@@ -4,6 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Black Orange Portfolio</title>
+
   <style>
     * {
       margin: 0;
@@ -15,7 +16,6 @@
       --bg: #050505;
       --bg-soft: #0d0d0d;
       --panel: rgba(255, 255, 255, 0.04);
-      --panel-2: rgba(255, 255, 255, 0.06);
       --line: rgba(255, 255, 255, 0.08);
       --white: #f4f4f4;
       --sub: rgba(255, 255, 255, 0.7);
@@ -24,9 +24,7 @@
       --orange-2: #ff7b2f;
       --shadow: 0 24px 60px rgba(0, 0, 0, 0.35);
       --max: 1320px;
-      --radius-xl: 34px;
       --radius-lg: 26px;
-      --radius-md: 18px;
     }
 
     html,
@@ -44,10 +42,15 @@
       min-height: 100vh;
     }
 
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
     .topbar {
       position: fixed;
       top: 16px;
-     : 50%;
+      left: 50%;
       transform: translateX(-50%);
       width: min(calc(100% - 28px), 1280px);
       z-index: 1000;
@@ -79,7 +82,6 @@
 
     .nav a {
       color: rgba(255, 255, 255, 0.82);
-      text-decoration: none;
       font-size: 13px;
       font-weight: 700;
       padding: 10px 14px;
@@ -120,20 +122,30 @@
       z-index: 2;
     }
 
-    .eyebrow {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
+    .eyebrow,
+    .mini-label {
+      display: inline-block;
       padding: 8px 14px;
       border-radius: 999px;
       border: 1px solid var(--line);
       background: rgba(255,255,255,0.03);
-      color: rgba(255,255,255,0.8);
       font-size: 12px;
       font-weight: 800;
       letter-spacing: 0.12em;
       text-transform: uppercase;
+    }
+
+    .eyebrow {
+      color: rgba(255,255,255,0.8);
       margin-bottom: 18px;
+    }
+
+    .mini-label {
+      margin-bottom: 10px;
+      color: var(--orange-2);
+      padding: 0;
+      border: none;
+      background: transparent;
     }
 
     .hero-grid,
@@ -151,7 +163,6 @@
 
     .two-col {
       grid-template-columns: 1fr 1fr;
-      align-items: stretch;
     }
 
     .project-grid {
@@ -172,9 +183,20 @@
       text-shadow: 0 0 26px rgba(255, 90, 31, 0.12);
     }
 
+    .hero-desc,
+    .section-copy,
+    .panel p,
+    .info-card p,
+    .project-card p,
+    .contact-card p,
+    .exp-item p {
+      color: var(--sub);
+      line-height: 1.8;
+      font-size: 15px;
+    }
+
     .hero-desc {
       max-width: 620px;
-      color: var(--sub);
       font-size: 17px;
       line-height: 1.9;
       margin-bottom: 28px;
@@ -194,7 +216,6 @@
       height: 50px;
       padding: 0 20px;
       border-radius: 999px;
-      text-decoration: none;
       font-size: 14px;
       font-weight: 800;
       transition: 0.25s ease;
@@ -218,6 +239,8 @@
 
     .hero-visual {
       position: relative;
+      width: 100%;
+      aspect-ratio: 4 / 5;
       min-height: 620px;
     }
 
@@ -231,20 +254,43 @@
 
     .photo-main {
       top: 0;
-     : 0;
+      right: 0;
       width: 78%;
-      height: 58%;
+      aspect-ratio: 4 / 3;
       border-radius: 0 0 0 24px;
-      background:
-        linear-gradient(rgba(0,0,0,0.18), rgba(0,0,0,0.35)),
-        url("https://images.unsplash.com/photo-1524504388940-b1c1722653e1?auto=format&fit=crop&w=1200&q=80") center/cover no-repeat;
+    }
+
+    .photo-sub {
+      left: 8%;
+      bottom: 0;
+      width: 52%;
+      aspect-ratio: 4 / 3;
+      border: 3px solid var(--orange);
+      border-radius: 22px;
+    }
+
+    .photo-main img,
+    .photo-sub img {
+      width: 100%;
+      height: 100%;
+      display: block;
+      object-fit: cover;
+    }
+
+    /* 초점 위치 고정 */
+    .photo-main img {
+      object-position: center 25%;
+    }
+
+    .photo-sub img {
+      object-position: center 20%;
     }
 
     .orange-strip {
-     : 0;
+      left: 0;
       top: 46%;
       width: 72%;
-      height: 16%;
+      min-height: 96px;
       border-radius: 0 22px 22px 0;
       background: linear-gradient(135deg, var(--orange), var(--orange-2));
       color: #111;
@@ -254,18 +300,6 @@
       font-size: 15px;
       font-weight: 800;
       line-height: 1.5;
-    }
-
-    .photo-sub {
-     : 8%;
-      bottom: 0;
-      width: 52%;
-      height: 34%;
-      border: 3px solid var(--orange);
-      border-radius: 22px;
-      background:
-        linear-gradient(rgba(0,0,0,0.15), rgba(0,0,0,0.25)),
-        url("https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&w=900&q=80") center/cover no-repeat;
     }
 
     .section-head {
@@ -287,8 +321,6 @@
 
     .section-copy {
       max-width: 460px;
-      color: var(--sub);
-      font-size: 15px;
       line-height: 1.85;
     }
 
@@ -319,48 +351,39 @@
       letter-spacing: -0.03em;
     }
 
-    .panel p,
-    .info-card p,
-    .project-card p,
-    .contact-card p {
-      color: var(--sub);
-      line-height: 1.8;
-      font-size: 15px;
-    }
-
-    .stack {
+    .stack,
+    .exp-list,
+    .skill-list,
+    .contact-list {
       display: grid;
       gap: 16px;
     }
 
-    .mini-label {
-      display: inline-block;
-      margin-bottom: 10px;
-      color: var(--orange-2);
-      font-size: 12px;
-      font-weight: 800;
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
-    }
-
-    .exp-list {
-      display: grid;
-      gap: 16px;
+    .exp-list,
+    .skill-list,
+    .contact-list {
       margin-top: 18px;
     }
 
-    .exp-item {
+    .exp-item,
+    .skill-item,
+    .contact-row {
       padding: 18px;
       border-radius: 18px;
       background: rgba(255,255,255,0.03);
       border: 1px solid rgba(255,255,255,0.06);
     }
 
-    .exp-top {
+    .exp-top,
+    .skill-top,
+    .contact-row {
       display: flex;
       justify-content: space-between;
-      align-items: start;
       gap: 14px;
+    }
+
+    .exp-top {
+      align-items: start;
       margin-bottom: 8px;
     }
 
@@ -386,31 +409,12 @@
       white-space: nowrap;
     }
 
-    .exp-item p {
-      color: var(--sub);
-      font-size: 14px;
-      line-height: 1.75;
-    }
-
-    .skill-list {
-      display: grid;
-      gap: 14px;
-      margin-top: 18px;
-    }
-
     .skill-item {
-      display: grid;
       gap: 8px;
-      padding: 18px;
-      border-radius: 18px;
-      background: rgba(255,255,255,0.03);
-      border: 1px solid rgba(255,255,255,0.06);
+      display: grid;
     }
 
     .skill-top {
-      display: flex;
-      justify-content: space-between;
-      gap: 10px;
       font-size: 14px;
       font-weight: 700;
     }
@@ -443,7 +447,6 @@
       margin-bottom: 16px;
       border: 1px solid rgba(255,255,255,0.08);
       overflow: hidden;
-      position: relative;
       background-size: cover;
       background-position: center;
     }
@@ -493,20 +496,9 @@
       font-weight: 700;
     }
 
-    .contact-list {
-      display: grid;
-      gap: 12px;
-      margin-top: 18px;
-    }
-
     .contact-row {
-      display: flex;
-      justify-content: space-between;
-      gap: 16px;
+      align-items: center;
       padding: 16px 18px;
-      border-radius: 18px;
-      background: rgba(255,255,255,0.03);
-      border: 1px solid rgba(255,255,255,0.06);
     }
 
     .contact-row strong {
@@ -517,7 +509,7 @@
     .contact-row span {
       font-size: 14px;
       font-weight: 800;
-      text-align:;
+      text-align: right;
     }
 
     .orange-panel {
@@ -533,7 +525,7 @@
 
     .scroll-indicator {
       position: absolute;
-     : 50%;
+      left: 50%;
       bottom: 26px;
       transform: translateX(-50%);
       display: inline-flex;
@@ -558,7 +550,7 @@
     .mouse::before {
       content: "";
       position: absolute;
-     : 50%;
+      left: 50%;
       top: 8px;
       width: 4px;
       height: 8px;
@@ -577,6 +569,7 @@
 
       .hero-visual {
         min-height: 520px;
+        aspect-ratio: auto;
       }
     }
 
@@ -608,12 +601,10 @@
 
       .photo-main {
         width: 84%;
-        height: 52%;
       }
 
       .orange-strip {
         width: 80%;
-        height: auto;
         min-height: 88px;
         top: 44%;
         font-size: 14px;
@@ -621,7 +612,6 @@
 
       .photo-sub {
         width: 58%;
-        height: 30%;
       }
 
       .project-thumb {
@@ -634,7 +624,7 @@
       }
 
       .contact-row span {
-        text-align:;
+        text-align: left;
       }
 
       .scroll-indicator {
@@ -664,9 +654,10 @@
           I’M YERIM
         </h1>
         <p class="hero-desc">
-          감각적인 구성과 또렷한 흐름을 좋아하는 사람입니다.  
+          감각적인 구성과 또렷한 흐름을 좋아하는 사람입니다.
           한 페이지가 하나의 장면처럼 보이도록 설계하고, 스크롤에 따라 오브젝트가 자연스럽게 등장하는 인터랙티브한 화면을 만드는 데 관심이 있습니다.
         </p>
+
         <div class="hero-actions">
           <a class="btn btn-primary" href="#projects">View Projects</a>
           <a class="btn btn-secondary" href="#contact">Contact Me</a>
@@ -674,11 +665,23 @@
       </div>
 
       <div class="hero-visual">
-        <div class="photo-main"></div>
+        <div class="photo-main">
+          <img
+            src="https://images.unsplash.com/photo-1524504388940-b1c1722653e1?auto=format&fit=crop&w=1200&q=80"
+            alt="Main portrait"
+          />
+        </div>
+
         <div class="orange-strip">
           I design pages that feel clear, immersive, and alive on scroll.
         </div>
-        <div class="photo-sub"></div>
+
+        <div class="photo-sub">
+          <img
+            src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&w=900&q=80"
+            alt="Sub portrait"
+          />
+        </div>
       </div>
     </div>
 
@@ -805,7 +808,7 @@
           <span class="mini-label" style="color:#111;">Design Note</span>
           <h3>Good is not loud.</h3>
           <p>
-            과한 효과보다 자연스럽고 분명한 움직임을 좋아합니다.  
+            과한 효과보다 자연스럽고 분명한 움직임을 좋아합니다.
             텍스트, 카드, 이미지가 순서대로 등장하면서도 전체 흐름이 끊기지 않도록 만드는 게 중요하다고 생각합니다.
           </p>
         </div>
@@ -827,9 +830,7 @@
           <div class="project-thumb thumb-1"></div>
           <small>Project 01</small>
           <h3>Interactive Portfolio Site</h3>
-          <p>
-            풀스크린 섹션과 스크롤 인아웃 모션을 중심으로 만든 개인 포트폴리오 콘셉트 사이트입니다.
-          </p>
+          <p>풀스크린 섹션과 스크롤 인아웃 모션을 중심으로 만든 개인 포트폴리오 콘셉트 사이트입니다.</p>
           <div class="mini-tags">
             <span>Fullscreen</span>
             <span>Motion</span>
@@ -841,9 +842,7 @@
           <div class="project-thumb thumb-2"></div>
           <small>Project 02</small>
           <h3>Brand Landing Page</h3>
-          <p>
-            브랜드의 첫인상을 강하게 전달하기 위해 큰 타이포와 이미지 흐름 중심으로 설계한 랜딩 페이지입니다.
-          </p>
+          <p>브랜드의 첫인상을 강하게 전달하기 위해 큰 타이포와 이미지 흐름 중심으로 설계한 랜딩 페이지입니다.</p>
           <div class="mini-tags">
             <span>Branding</span>
             <span>Landing</span>
@@ -855,9 +854,7 @@
           <div class="project-thumb thumb-3"></div>
           <small>Project 03</small>
           <h3>Editorial Web Concept</h3>
-          <p>
-            에디토리얼한 레이아웃 감각을 웹에 옮겨와 텍스트와 이미지가 균형 있게 보이도록 만든 작업입니다.
-          </p>
+          <p>에디토리얼한 레이아웃 감각을 웹에 옮겨와 텍스트와 이미지가 균형 있게 보이도록 만든 작업입니다.</p>
           <div class="mini-tags">
             <span>Editorial</span>
             <span>Visual</span>
@@ -909,6 +906,5 @@
       </div>
     </div>
   </section>
-
 </body>
 </html>
