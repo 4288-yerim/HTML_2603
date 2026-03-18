@@ -1,0 +1,349 @@
+
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Grid 실습 완성본</title>
+  <script src="https://code.jquery.com/jquery-3.7.1.js" 
+    integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4=" crossorigin="anonymous"></script>
+  <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@8.4.7/swiper-bundle.min.css" />
+  <script src="https://cdn.jsdelivr.net/npm/swiper@8.4.7/swiper-bundle.min.js"></script>
+
+  <style>
+    body {
+        margin: 0;
+        padding: 20px;
+        background-color: #f0f2f5;
+        color: #333;
+    }
+
+    .box {
+        padding: 20px;
+        border-radius: 8px;
+        box-shadow: 0 2px 5px #eee;
+        font-weight: bold;
+        font-size: 20px;
+    }
+
+    .header {
+        background-color: #e3ecf2;
+        color: black;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+    }
+    .header-img {
+        width: 200px;
+        height: 100px;
+        border-radius: 30px;
+        box-shadow: 3px 3px 3px #888;
+        background-image: url("../media/logo.png");
+        background-size: contain;
+    }
+
+    .banner{
+        background-color: #ffffff;
+        display: flex;
+        padding: 0px;
+        border-radius: 10px;
+    }
+
+    .side {
+        background-color: #fafafa;
+        color: #333;
+        padding: 30px 20px;
+    }
+
+    .content {
+        background-color: #fafafa;
+        box-shadow: none;
+        padding: 20px;
+    }
+
+    .widget {
+        background-color: white;
+        padding: 20px;
+        border-radius: 8px;
+        box-shadow: 0 2px 5px #eee;
+        align-items: center;
+        cursor: pointer;
+    }
+
+    .footer {
+        background-color: #fafafa;
+        color: white;
+    }
+
+    .dashboard-container {
+        display: grid;
+        gap: 5px;
+        grid-template-columns: 300px 1fr;
+        grid-template-rows: 150px minmax(200px, auto) minmax(800px, auto) 150px;
+        /* 헤더 베너 메인 푸터 4개 영역 */
+        grid-template-areas:
+        "header header"
+        "banner banner"
+        "side content"
+        "footer footer";
+    }
+
+    .header { grid-area: header; }
+    .banner {grid-area: banner}
+    .side { grid-area: side; }
+    .content { grid-area: content; }
+    .footer { grid-area: footer; }
+
+    .content {
+        display: grid;
+        gap: 20px; 
+        grid-template-columns: repeat(auto-fit, minmax(260px, 260px));
+        grid-auto-rows: 330px;
+        
+    }
+
+    @media (max-width: 768px) {
+        .dashboard-container {
+            grid-template-columns: 1fr;
+            grid-template-rows: 150px 150px 150px 1fr 150px;
+            grid-template-areas:
+            "header"
+            "banner"
+            "side"
+            "content"
+            "footer";
+        }
+    }
+
+    .word {
+        margin-top : 20px;
+        font-size: 15px;
+    }
+
+    .red {
+        color: red;
+        font-size: 15px;
+        margin-top : 5px;
+    }
+
+    .text {
+        color: black;
+        font-size: 15px;
+        margin-top : 5px;
+    }
+
+    .widget-img {
+        width: 200px;
+        height: 200px;
+        border-radius: 20%;
+        background-size: contain;
+    }
+
+    .htext{
+        margin: 8px 0px;
+    }
+    .menu{
+        font-size: 13px;
+        border: none;
+        width: 90%;
+        height: 30px;
+        padding: 0px 10px;
+        list-style: none;
+    }
+
+    .menu a{
+        text-decoration: none;
+        color: #555555;
+        display: block;
+        border-radius: 6px;
+        margin-bottom: 10px;
+        padding: 10px 15px;
+    }
+    .menu a:hover,
+    .menu a.active{
+        background-color: #4ecdc4; 
+        color: white;
+        font-weight: bold;
+    }
+    .button{
+        border: none;
+        background-color: #e3ecf2;
+        font-size: 20px;
+    }
+    .rjatordj{
+        border: none;
+        padding: 10px;
+        width: 400px;
+    }
+    .swiper {
+            width: 100%;
+            /* wdith : 800px 등 원하는 크기 가능 */
+            height: auto;
+        }
+        /* 슬라이드 안의 이미지가 영역에 딱 맞게 들어가도록 설정 */
+        .swiper-slide img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover; 
+            display: block;
+            border-radius: 10px;
+        }
+        .logout{
+            margin-left: 8px;
+        }
+  </style>
+</head>
+<body>
+  <div id="app">
+    <div class="dashboard-container">
+        <div class="box header">
+            <p class="header-img"></p>
+            
+            <div class="rjatordj">
+                <input type="text" placeholder="검색어를 입력하세요." v-model="keyword" @keyup.enter="fnList">
+                <button @click="fnList">검색</button>
+            </div>
+            
+            <div>
+                <button class="button">🔔</button>
+                <button class="button">👨‍💻</button>
+                <a href="mypage.html">{{sessionName}}</a>
+                <button @click="fnLogout()" class="logout">로그아웃</button>
+            </div>
+        </div>
+
+        <div class="box banner">
+            <div class="swiper">
+                <div class="swiper-wrapper">
+                    <div class="swiper-slide"><img src="../media/banner1.png"></div>
+                    <div class="swiper-slide"><img src="../media/banner2.png"></div>
+                    <div class="swiper-slide"><img src="../media/banner3.png"></div>
+                    <div class="swiper-slide"><img src="../media/banner4.png"></div>
+                    <div class="swiper-slide"><img src="../media/banner5.png"></div>
+                </div>
+                <div class="swiper-pagination"></div>
+                <div class="swiper-button-next"></div>
+                <div class="swiper-button-prev"></div>
+            </div>
+        </div>
+
+        <div class="box side">
+            <h5 class="htext">카테고리</h5>
+            <ul class="menu">
+                <li><a href="#" @click="fnCategory('')" class="active">전체 상품</a></li>
+                <li v-for="item in categoryList">
+                    <a href="javascript:;" @click="fnCategory(item.CATEGORY)">{{item.CATEGORY}}</a>
+                </li>
+            </ul>
+        </div>
+
+        <div class="box content">
+            <div class="widget" v-for="item in list" @click="fnInfo(item.PRODUCT_ID)">
+                <img :src="item.IMG_PATH" class="widget-img">
+                <div class="word">{{item.PRODUCT_NAME}}</div>
+                <div class="text">{{item.CATEGORY}}</div>
+                <div class="red">{{item.PRICE_WON}}원</div>
+            </div>
+        </div>
+
+        <div class="box footer">하단 영역~~</div>
+    </div>
+  </div>
+</body>
+</html>
+<script>
+    const app = Vue.createApp({
+        data() {
+            return {
+                // 변수 - (key : value)
+                list : [],
+                categoryList : [],
+                keyword : "",
+                category : "",
+                sessionName : ""
+            };
+        },
+        methods: {
+            // 함수(메소드) - (key : function())
+            fnList : function () {
+                let self = this;
+                $.ajax({
+                    url: "http://192.168.30.57:3009/product/list",
+                    dataType: "json",
+                    type: "GET",
+                    data: {keyword : self.keyword, brand : "", category : self.category},
+                    success: function (data) {
+                        console.log(data);
+                        self.list = data.productList;
+                    }
+                });
+            },
+            fnCategory : function(category) {
+                let self = this;
+                self.category = category;
+                self.fnList();
+            },
+            fnCategoryList : function () {
+                let self = this;
+                $.ajax({
+                    url: "http://192.168.30.57:3009/category/list",
+                    dataType: "json",
+                    type: "GET",
+                    data: {},
+                    success: function (data) {
+                        console.log(data);
+                        self.categoryList = data.categoryList
+                    }
+                });
+            }, 
+            fnInfo : function(productId){
+                // product.info.html
+                location.href="product.info.html?productId=" + productId;
+            },
+            fnInit: function() {
+                const swiper = new Swiper('.swiper', {
+                    loop: true,
+                    autoplay: {
+                        delay: 2500,
+                    },
+                    pagination: {
+                        el: '.swiper-pagination',
+                        clickable: true,
+                    },
+                    navigation: {
+                        nextEl: '.swiper-button-next',
+                        prevEl: '.swiper-button-prev',
+                    },
+                });
+            },
+            fnLogout : function() {
+                if(!confirm("정말 로그아웃 하시겠습니까?")){
+                    return;
+                }
+                // console.log("삭제전 => ", localStorage.getItem("sessionName"));
+                localStorage.clear();
+                //  console.log("삭제후 => ", localStorage.getItem("sessionName"));
+                alert("로그아웃 되었습니다!");
+                location.href="Login.html";
+            }
+        }, 
+            // methods
+        mounted() {
+            // 처음 시작할 때 실행되는 부분
+            let self = this;
+            self.fnCategoryList();
+            self.fnList();
+            self.fnInit();
+            console.log("localName => ", localStorage.getItem("sessionName"));
+            self.sessionName = localStorage.getItem("sessionName");
+            if(self.sessionName == null){
+                alert("로그인 후 이용해주세요");
+                location.href="Login.html"
+            }
+        }
+    });
+
+    app.mount('#app');
+</script>
