@@ -193,6 +193,11 @@
         .logout{
             margin-left: 8px;
         }
+        .name{
+            text-decoration: none;
+            color: #333;
+            cursor: pointer;
+        }
   </style>
 </head>
 <body>
@@ -209,7 +214,7 @@
             <div>
                 <button class="button">🔔</button>
                 <button class="button">👨‍💻</button>
-                <a href="mypage.html">{{sessionName}}</a>
+                <a @click="fnId()" class="name">{{sessionName}}</a>
                 <button @click="fnLogout()" class="logout">로그아웃</button>
             </div>
         </div>
@@ -262,7 +267,7 @@
                 categoryList : [],
                 keyword : "",
                 category : "",
-                sessionName : ""
+                sessionName : "",
             };
         },
         methods: {
@@ -327,7 +332,11 @@
                 //  console.log("삭제후 => ", localStorage.getItem("sessionName"));
                 alert("로그아웃 되었습니다!");
                 location.href="Login.html";
-            }
+            },
+            fnId : function() {
+                let self = this;
+                location.href="mypage.html?userId=" + localStorage.getItem("sessionId");
+            },
         }, 
             // methods
         mounted() {
