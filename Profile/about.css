@@ -1,0 +1,85 @@
+/* ABOUT */
+.about-page {
+  min-height: calc(100vh - 78px);
+}
+
+.page-text-sub {
+  color: #d5d5d5;
+  max-width: 680px;
+}
+
+.info-layout {
+  display: grid;
+  grid-template-columns: 1.25fr 0.75fr;
+  gap: 28px;
+}
+
+.info-main {
+  display: grid;
+  gap: 22px;
+}
+
+.info-block {
+  background-color: #181818;
+  border-radius: 20px;
+  padding: 32px;
+  border: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+.info-block h2 {
+  font-size: 1.4rem;
+  color: #f28c28;
+  margin-bottom: 16px;
+}
+
+.info-block p {
+  color: #dddddd;
+}
+
+.info-side {
+  display: grid;
+  gap: 22px;
+}
+
+.side-box {
+  background-color: #181818;
+  border-radius: 20px;
+  padding: 28px;
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  transition: transform 0.3s ease, border-color 0.3s ease;
+}
+
+.side-box:hover {
+  transform: translateY(-4px);
+  border-color: rgb(204, 116, 28);
+}
+
+.side-box h3 {
+  font-size: 1.15rem;
+  color: #b7e34f;
+  margin-bottom: 16px;
+}
+
+.side-box ul {
+  list-style: none;
+  display: grid;
+  gap: 10px;
+}
+
+.side-box li {
+  color: #dddddd;
+  position: relative;
+  padding-left: 18px;
+}
+
+.side-box li::before {
+  content: "•";
+  position: absolute;
+  left: 0;
+  color: #f28c28;
+}
+
+.back-area {
+  margin-top: 36px;
+  text-align: center;
+}
