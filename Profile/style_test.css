@@ -97,7 +97,7 @@ img {
 }
 
 .main-text-sub {
-  max-width: 620px;
+  width: 500px;
   color: #d5d5d5;
   font-size: 17px;
   margin-bottom: 28px;
@@ -272,11 +272,11 @@ img {
   background-color: #181818;
   border-radius: 20px;
   padding: 32px;
-  border: 1px solid rgba(255, 255, 255, 0.06);
+  border: 1px solid #333333;
 }
 
 .info-box h2 {
-  font-size: 1.4rem;
+  font-size: 22px;
   color: #f28c28;
   margin-bottom: 16px;
 }
@@ -294,7 +294,7 @@ img {
   background-color: #181818;
   border-radius: 20px;
   padding: 28px;
-  border: 1px solid rgba(255, 255, 255, 0.06);
+  border: 1px solid #333333;
   transition: transform 0.3s ease, border-color 0.3s ease;
 }
 
@@ -304,7 +304,7 @@ img {
 }
 
 .right-box h3 {
-  font-size: 1.15rem;
+  font-size: 18px;
   color: #b7e34f;
   margin-bottom: 16px;
 }
@@ -317,20 +317,10 @@ img {
 
 .right-box li {
   color: #dddddd;
-  position: relative;
-  padding-left: 18px;
 }
 
-.right-box li::before {
-  content: "•";
-  position: absolute;
-  left: 0;
+.right-box span {
   color: #f28c28;
-}
-
-.back-area {
-  margin-top: 36px;
-  text-align: center;
 }
 
 /* 푸터 */
